@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"3"},"creationTimestamp":"2026-09-30T04:44:26Z","generation":5,"labels":{"app":"nginx-demo","env":"lab"},"name":"nginx-demo","namespace":"apps-demo","resourceVersion":"2654755","uid":"c5dfede7-db40-4af1-be59-8b26888f6caa"},"spec":{"progressDeadlineSeconds":600,"replicas":2,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app":"nginx-demo"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"annotations":{"kubectl.kubernetes.io/restartedAt":"2026-09-30T08:49:02Z"},"labels":{"app":"nginx-demo","env":"lab"}},"spec":{"containers":[{"env":[{"name":"DEMO_PASSWORD","valueFrom":{"secretKeyRef":{"key":"demo-password","name":"nginx-demo-secret"}}}],"image":"nginx:1.27","imagePullPolicy":"IfNotPresent","name":"nginx","ports":[{"containerPort":80,"protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/usr/share/nginx/html","name":"html-volume"}]}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30,"volumes":[{"configMap":{"defaultMode":420,"name":"nginx-demo-config"},"name":"html-volume"}]}}},"status":{"availableReplicas":2,"conditions":[{"lastTransitionTime":"2026-09-30T05:40:55Z","lastUpdateTime":"2026-09-30T05:40:55Z","message":"Deployment has minimum availability.","reason":"MinimumReplicasAvailable","status":"True","type":"Available"},{"lastTransitionTime":"2026-09-30T04:44:26Z","lastUpdateTime":"2026-09-30T08:49:06Z","message":"ReplicaSet \"nginx-demo-5c96645956\" has successfully progressed.","reason":"NewReplicaSetAvailable","status":"True","type":"Progressing"}],"observedGeneration":5,"readyReplicas":2,"replicas":2,"terminatingReplicas":0,"updatedReplicas":2}}
+  creationTimestamp: "2026-09-30T12:03:16Z"
+  generation: 1
+  labels:
+    app: nginx-demo
+    env: lab
+  name: nginx-demo
+  namespace: apps-demo
+  resourceVersion: "2764280"
+  uid: f187be93-8350-4aaf-8da0-334c99ed7a86
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nginx-demo
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/restartedAt: "2026-09-30T08:49:02Z"
+      labels:
+        app: nginx-demo
+        env: lab
+    spec:
+      containers:
+      - env:
+        - name: DEMO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: demo-password
+              name: nginx-demo-secret
+        image: nginx:1.27
+        imagePullPolicy: IfNotPresent
+        name: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: html-volume
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: nginx-demo-config
+        name: html-volume
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: "2026-09-30T12:03:17Z"
+    lastUpdateTime: "2026-09-30T12:03:17Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2026-09-30T12:03:16Z"
+    lastUpdateTime: "2026-09-30T12:03:17Z"
+    message: ReplicaSet "nginx-demo-5c96645956" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 2
+  replicas: 2
+  terminatingReplicas: 0
+  updatedReplicas: 2
