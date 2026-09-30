@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"metallb.io/ip-allocated-from-pool":"metallb"},"creationTimestamp":"2026-09-30T04:44:26Z","name":"nginx-demo","namespace":"apps-demo","resourceVersion":"2555985","uid":"613c6310-f98c-4af5-9fdb-3dc77f562351"},"spec":{"allocateLoadBalancerNodePorts":true,"clusterIP":"10.97.109.21","clusterIPs":["10.97.109.21"],"externalTrafficPolicy":"Cluster","internalTrafficPolicy":"Cluster","ipFamilies":["IPv4"],"ipFamilyPolicy":"SingleStack","ports":[{"nodePort":31352,"port":80,"protocol":"TCP","targetPort":80}],"selector":{"app":"nginx-demo"},"sessionAffinity":"None","type":"LoadBalancer"},"status":{"loadBalancer":{"ingress":[{"ip":"10.55.86.201","ipMode":"VIP"}]}}}
+    metallb.io/ip-allocated-from-pool: metallb
+  creationTimestamp: "2026-09-30T12:03:16Z"
+  name: nginx-demo
+  namespace: apps-demo
+  resourceVersion: "2764238"
+  uid: 878af56a-2055-46a9-8b77-a09b94f5180d
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.97.109.21
+  clusterIPs:
+  - 10.97.109.21
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31352
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx-demo
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.55.86.201
+      ipMode: VIP
